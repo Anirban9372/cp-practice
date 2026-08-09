@@ -1,0 +1,18 @@
+# Compiled binaries
+*.out
+*.exe
+*.o
+a.out
+
+# Editor junk
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Old cf folder artifacts
+runc.sh
