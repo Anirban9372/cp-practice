@@ -8,7 +8,12 @@ int main()
     long long n;
     cin >> n;
 
-    long long k = floor((-1 + sqrtl(1 + 8 * n)) / 2);
-    cout << k;
+    long long k = 1;
+    while (k * (k + 1) / 2 <= n)
+    {
+        k++;
+    }
+    cout << k - 1;
+
     return 0;
 }
