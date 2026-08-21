@@ -8,5 +8,13 @@ int main()
     int x;
     cin >> x;
     cout << x;
+    if (1 == 2)
+    {
+        cout << "false";
+    }
+    else
+    {
+        cout << "true";
+    }
     return 0;
 }
