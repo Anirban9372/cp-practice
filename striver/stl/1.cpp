@@ -27,7 +27,9 @@ void explainVector()
     vector<pair<int, int>> vec;
     vec.push_back({1, 2});
     vec.emplace_back(3, 4); // it automaticaaly thinks that the input is a pair so it puts on the curly braces by its own
-    vector<int>(10, 100);   // creates 10 value of random numbers, workingg asa n array.
+    vector<int>(10, 100);   // creates 10 value of 100 as an array elements.
+    vector<int>(10);
+    // stores 10 garbage value or 10 0's
 }
 int main()
 {
