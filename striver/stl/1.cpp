@@ -91,6 +91,31 @@ void explainDeque()
     {
         cout << it << " ";
     }
+    cout << "\n";
+}
+void explainStack()
+{
+    stack<int> s;
+    s.push(1);
+    s.push(2);
+    s.emplace(3);
+    cout << s.top() << "\n";
+    s.pop(); // deletes last in
+    cout << s.top() << "\n";
+    cout << s.empty() << "\n"; // is the stack empty or not
+    stack<int> s1, s2;
+    s1.swap(s2);
+    cout << "\n";
+}
+void explainQueue()
+{
+    queue<int> q;
+    q.push(1);
+    q.push(2);
+    q.emplace(3);
+    q.back() = +4;
+    q.pop();
+    cout << q.front(); // rest all functions are almost same
 }
 
 int main()
@@ -100,5 +125,6 @@ int main()
     explainVector();
     explainList();
     explainDeque();
+    explainStack();
     return 0;
 }
