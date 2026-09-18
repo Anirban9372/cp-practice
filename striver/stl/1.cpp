@@ -29,6 +29,12 @@ void explainVector()
     vec.emplace_back(3, 4); // it automaticaaly thinks that the input is a pair so it puts on the curly braces by its own
     vector<int>(10, 100);   // creates 10 value of 100 as an array elements.
     vector<int>(10);        // stores 10 garbage value or 10 0's
+    vector<int> v1(5, 20);
+    vector<int> v2(v1); // whole v1 gets copied into v2
+    // iterators
+    vector<int>::iterator it = v.begin(); // it stores the memory address
+    it++;
+    cout << *(it) << " "; // it'll print the value at adress of the second array element:2
 }
 int main()
 {
