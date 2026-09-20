@@ -113,9 +113,113 @@ void explainQueue()
     q.push(1);
     q.push(2);
     q.emplace(3);
-    q.back() = +4;
+    q.back() = +4; // increase the last value by 4
     q.pop();
-    cout << q.front(); // rest all functions are almost same
+    cout << q.front() << "\n"; // rest all functions are almost same
+}
+void explainPriorityQueue()
+{
+    // for max heap
+    priority_queue<int> pq;
+    pq.push(4);
+    pq.push(6);
+    pq.push(10);
+    pq.emplace(12);
+    pq.pop();
+    cout << pq.top() << "\n"; // should give out 10
+    // for min heap
+    priority_queue<int, vector<int>, greater<int>> p;
+    p.push(3);
+    p.push(5);
+    p.push(10);
+    p.push(4);
+    p.pop();                 // remove min element 3
+    cout << p.top() << "\n"; // should give out 4
+}
+void explainSet()
+{
+    set<int> s = {3, 1, 4, 1}; // Stores as {1, 3, 4}
+
+    s.insert(5); // Adds 5: {1, 3, 4, 5}
+    s.erase(3);  // Removes 3: {1, 4, 5} // takes logarithmic time
+
+    // 1. Iterating through a set
+    for (auto it = s.begin(); it != s.end(); ++it)
+    {
+        cout << *it << " ";
+    }
+    // 2. Finding elements
+    if (s.find(4) != s.end())
+    {
+        // 4 exists
+    }
+    // count() also works: returns 1 if exists, 0 otherwise
+    if (s.count(5))
+    {
+        // 5 exists
+    }
+    auto it = s.find(4);
+    s.erase(it);                 // Erase by iterator and it takes constant time.
+    auto it1 = s.lower_bound(3); // Returns an iterator to the first element >= 3
+    auto it2 = s.upper_bound(3); // Returns an iterator to the first element > 3
+}
+void explainMultiSet()
+{
+    multiset<int> ms = {3, 1, 4, 1}; // Stores as {1, 1, 3, 4}
+
+    ms.insert(5); // Adds 5: {1, 1, 3, 4, 5}
+    ms.erase(1);  // Removes all occurrences of 1: {3, 4, 5} // takes logarithmic time
+
+    // To remove a single occurrence of an element
+    auto it = ms.find(4);
+    if (it != ms.end())
+    {
+        ms.erase(it); // Erase by iterator and it takes constant time.
+    }
+    // remove for a range
+    ms.erase(ms.find(3), ms.find(3 + 2)); // Removes all occurrences of 3: {4, 5} // takes logarithmic time
+
+    // Iterating through a multiset
+    for (auto it = ms.begin(); it != ms.end(); ++it)
+    {
+        cout << *it << " ";
+    }
+}
+void explainUnorderedSet()
+{
+    unordered_set<int> uset = {5, 1, 9};
+    // Order in memory is random
+    // it does not have an upperbound or lowerbound and
+    // only thing is that it has unique elements and it is faster than set
+
+    // Element is placed into a "bucket" computed from its hash value.
+    // It does NOT go to the 'end' or 'front' like in a vector or list.
+    uset.insert(4);
+}
+void explainMap()
+{
+    map<string, int> m;
+    m["apple"] = 5;
+    m.insert({"banana", 3});
+    // 1. Iterating through a map using iterators
+    for (auto it = m.begin(); it != m.end(); ++it)
+    {
+        // it->first is the key, it->second is the value
+        cout << it->first << " : " << it->second << "\n";
+    }
+
+    // Modern, easier approach for iteration
+    for (auto p : m)
+    {
+        cout << p.first << " : " << p.second << "\n";
+    }
+    // 2. Finding keys
+    if (m.find("apple") != m.end())
+    {
+        cout << "Found apple!";
+    }
+
+    m.erase("banana"); // Removes by key
 }
 
 int main()
@@ -126,5 +230,11 @@ int main()
     explainList();
     explainDeque();
     explainStack();
+    explainQueue();
+    explainPriorityQueue();
+    explainSet();
+    explainMultiSet();
+    explainUnorderedSet();
+    explainMap();
     return 0;
 }
