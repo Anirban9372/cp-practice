@@ -220,6 +220,98 @@ void explainMap()
     }
 
     m.erase("banana"); // Removes by key
+    auto it = m.find("apple");
+    cout << it->second << "\n";
+    cout << (*it).second << "\n";
+    // to get the value and here dot operator has higher preference than
+    // star so better to use arrow or at first dereference it then give dot
+}
+void explainMultimap()
+{
+    // We can have multiple values for the same key in a multimap
+    multimap<string, int> mm;
+    mm.insert({"apple", 5});
+    mm.insert({"banana", 3});
+    mm.insert({"apple", 10}); // Another value for the key "apple"
+
+    // Iterating through a multimap
+    for (auto it = mm.begin(); it != mm.end(); ++it)
+    {
+        cout << it->first << " : " << it->second << "\n";
+    }
+
+    // Finding all values for a specific key
+    auto range = mm.equal_range("apple");
+    for (auto it = range.first; it != range.second; ++it)
+    {
+        cout << it->first << " : " << it->second << "\n";
+    }
+}
+void explainUnorderedMap()
+{
+    // the keys are unique but not sorted
+    unordered_map<int, string> umap;
+    umap[1] = "One";
+    umap[2] = "Two";
+
+    // Syntax for checking existence is identical to ordered versions
+    if (umap.find(1) != umap.end())
+    {
+        // Exists
+    }
+}
+bool comp(pair<int, int> p1, pair<int, int> p2)
+{
+    if (p1.second < p2.second)
+        return true;
+    if (p1.second > p2.second)
+        return false;
+    else
+    {
+        if (p1.first > p2.first)
+            return true;
+        else
+            return false;
+    }
+}
+void explainSort()
+{
+    vector<int> v = {4, 3, 1, 5, 2};
+    int n = 100;
+    int a[n];
+    sort(a, a + n);                           // for arrays with size n
+    sort(a + 2, a + 4);                       // sort in any range
+    sort(v.begin(), v.end());                 // for vectors
+    sort(v.begin(), v.end(), greater<int>()); // decreasing order
+    // sort by second element of pair in ascending and if the second element is same then
+    // sort by the first element in descending order
+    pair<int, int> arr[] = {{1, 2}, {3, 2}, {4, 1}};
+    sort(arr, arr + 3, comp); // comp is a function which returns true or false based on the condition
+                              // binary search(needs sorted containers)
+    //  3. Binary Search (Requires sorted container) O(log N)
+    sort(v.begin(), v.end());                          // sort again
+    bool found = binary_search(v.begin(), v.end(), 3); // Returns true
+}
+void Functions()
+{
+    string s = "234";
+    do
+    {
+        cout << s << endl;
+    } while (next_permutation(s.begin(), s.end())); // gives all the permutations of the
+    // string s = "234" and finds lexicographically next bigger permutation
+    vector<int> v = {1, 1, 2, 3, 4, 5};
+    int max = *max_element(v.begin(), v.end());  // gives the maximum element in the vector
+    int min = *min_element(v.begin(), v.end());  // gives the minimum element in the vector
+    int sum = accumulate(v.begin(), v.end(), 0); // gives the sum of all the elements in the vector,v
+    // and 0 is the initial value of the sum
+    int ones = count(v.begin(), v.end(), 1); // gives the count of 1's in the vector
+    //  fill: Puts the same value in the entire range
+    vector<int> v2(5);
+    fill(v2.begin(), v2.end(), -1); // {-1, -1, -1, -1, -1}
+
+    //  iota: Fills the range with sequentially increasing values
+    iota(v2.begin(), v2.end(), 10); // {10, 11, 12, 13, 14}
 }
 
 int main()
@@ -236,5 +328,9 @@ int main()
     explainMultiSet();
     explainUnorderedSet();
     explainMap();
+    explainMultimap();
+    explainUnorderedMap();
+    Functions();
+    explainSort();
     return 0;
 }
